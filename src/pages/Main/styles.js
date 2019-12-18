@@ -5,9 +5,9 @@ import media from '../../styles/media';
 
 export const Container = styled.div`
   flex: 1;
-  padding: 0 5em;
+  padding: 0 5em 5em 5em;
   ${media.mobile`
-    padding: 0 0.625em;
+    padding: 0 0.625em 0.625em 0.625em;
   `}
   flex-direction: column;
 `;
