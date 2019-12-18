@@ -2,10 +2,19 @@ import styled from 'styled-components';
 import colors from '../styles/colors';
 
 export default styled.p.attrs(
-  ({ fontSize, textAlign, padding, color, bold, textTransform }) => ({
+  ({
+    fontSize,
+    textAlign,
+    padding,
+    color,
+    bold,
+    textTransform,
+    marginBottom,
+  }) => ({
     fontSize: fontSize || 1.4,
     textAlign: textAlign || 'left',
     padding: padding || '0',
+    marginBottom: marginBottom || 0,
     color: color || colors.black,
     bold: bold || false,
     textTransform: textTransform || 'none',
@@ -17,5 +26,6 @@ export default styled.p.attrs(
   color: ${props => props.color};
   font-weight: ${props => (props.bold ? 700 : 400)};
   padding: ${props => props.padding};
+  margin-bottom: ${props => props.marginBottom}em;
   text-transform: ${props => props.textTransform};
 `;

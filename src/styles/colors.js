@@ -6,6 +6,7 @@ export default {
   green: '#0FA866',
   white: '#FFF',
   black: '#1F2D30',
+  bolder: '#777',
   grey: '#FBFBFB',
   regular: '#DEDEDE',
   darkTransparent: 'rgba(31, 45, 48, .88)',
