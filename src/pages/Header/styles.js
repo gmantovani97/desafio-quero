@@ -6,16 +6,16 @@ import media from '../../styles/media';
 export const Container = styled.div`
   flex: 1;
   flex-direction: column;
-  padding: 0.3125em 5em;
-  ${media.mobile`
-    padding: 0.3125em 0.625em;
-  `}
 `;
 
 export const HeaderTop = styled.div`
   flex: 1;
   flex-direction: row;
   justify-content: center;
+  padding: 0.3125em 5em;
+  ${media.mobile`
+    padding: 0.3125em 0.625em;
+  `}
 `;
 
 export const Box = styled.div`
@@ -98,4 +98,54 @@ export const Bar = styled.div`
       display: flex;
     `}
     `};
+`;
+
+export const HeaderBottom = styled.div`
+  flex: 1;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  background: ${colors.primaryBlue};
+  padding: 0 5em;
+  ${media.mobile`
+    justify-content: space-between;
+    padding: 1em;
+  `}
+`;
+
+export const MenuBox = styled.div`
+  display: none;
+  ${media.mobile`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  `}
+  svg {
+    width: 1.5em;
+  }
+`;
+
+export const Button = styled.button`
+  ${props =>
+    props.selected
+      ? css`
+          background: ${colors.secondaryBlue};
+        `
+      : css`
+          background: none;
+        `};
+  border: none;
+  color: ${colors.white};
+  font-size: 0.925em;
+  font-weight: 700;
+  padding: 0.325em 2em;
+  &:first-of-type {
+    padding: 0 2em 0 0;
+  }
+  ${media.mobile`
+    display: none;
+    &:first-of-type {
+      display: flex;
+    }
+  `}
 `;

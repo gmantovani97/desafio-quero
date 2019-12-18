@@ -4,6 +4,7 @@ import {
   mdiInformationOutline,
   mdiAccountCircleOutline,
   mdiWhatsapp,
+  mdiChevronDown,
 } from '@mdi/js';
 
 import Text from '../../elements/Text';
@@ -18,6 +19,9 @@ import {
   ContactBoxText,
   Image,
   Bar,
+  HeaderBottom,
+  MenuBox,
+  Button,
 } from './styles';
 
 export default function Header() {
@@ -61,6 +65,17 @@ export default function Header() {
           </Text>
         </Box>
       </HeaderTop>
+      <HeaderBottom>
+        <Button>Minha conta</Button>
+        <Button>Pré-matriculas</Button>
+        <Button selected>Bolsas favoritas</Button>
+        <MenuBox>
+          <Text fontSize={1} bold color={colors.white}>
+            Menu
+          </Text>
+          <Icon path={mdiChevronDown} color={colors.white} title="Conta" />
+        </MenuBox>
+      </HeaderBottom>
     </Container>
   );
 }

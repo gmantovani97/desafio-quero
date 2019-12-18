@@ -21,6 +21,7 @@ export default createGlobalStyle`
   }
 
   button {
+    font-family: Montserrat;
     cursor: pointer;
   }
 
