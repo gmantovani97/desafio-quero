@@ -1,6 +1,6 @@
 import React from 'react';
 import Icon from '@mdi/react';
-import { mdiChevronLeft } from '@mdi/js';
+import { mdiChevronLeft, mdiPlusCircleOutline } from '@mdi/js';
 
 import Text from '../../elements/Text';
 import colors from '../../styles/colors';
@@ -15,6 +15,8 @@ import {
   TitleSection,
   ButtonsSection,
   Button,
+  ContentSection,
+  ScholarshipBox,
 } from './styles';
 
 export default function Main() {
@@ -56,6 +58,17 @@ export default function Main() {
           <Button>2° semestre de 2019</Button>
           <Button>1° semestre de 2020</Button>
         </ButtonsSection>
+        <ContentSection>
+          <ScholarshipBox>
+            <Icon path={mdiPlusCircleOutline} color={colors.primaryBlue} />
+            <Text textAlign="center" fontSize={2} bold>
+              Adicionar bolsa
+            </Text>
+            <Text textAlign="center">
+              Clique para adicionar bolsas de cursos do seu interesse
+            </Text>
+          </ScholarshipBox>
+        </ContentSection>
       </MainBottom>
     </Container>
   );
