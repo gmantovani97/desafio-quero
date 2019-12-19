@@ -20,7 +20,10 @@ export const Container = styled.div`
 export const Content = styled.div`
   background: ${colors.grey};
   padding: 1.25em;
-  min-width: 100vw;
+  ${media.mobile`
+    min-width: 100vw;
+  `}
+  max-width: 50em;
   max-height: 80vh;
   flex-direction: column;
   flex: 1;
@@ -49,6 +52,40 @@ export const SelectBox = styled.div`
   align-items: flex-start;
   width: 100%;
   padding: 0.6125em 0;
+  &:first-of-type {
+    margin: 0 0.6125em 0 0;
+    ${media.mobile`
+    margin: 0;
+  `}
+  }
+  &:last-of-type {
+    margin: 0 0 0 0.6125em;
+    ${media.mobile`
+    margin: 0;
+  `}
+  }
+`;
+
+export const SelectSection = styled.div`
+  flex: 1;
+  ${media.mobile`
+    flex-direction: column;
+  `}
+  align-items: flex-start;
+  width: 100%;
+  padding: 0.6125em 0;
+`;
+
+export const FilterSection = styled.div`
+  flex: 1;
+  ${media.mobile`
+    flex-direction: column;
+    padding: 0;
+  `}
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  padding: 0.6125em 0;
 `;
 
 export const Select = styled.select`
@@ -65,6 +102,10 @@ export const Option = styled.option`
 
 export const MultipleSelectionBox = styled.div`
   flex-direction: column;
+  flex: 1;
+  ${media.mobile`
+    flex: initial;
+  `}
 `;
 
 export const InputSection = styled.div`
@@ -100,7 +141,11 @@ export const CheckBox = styled.div`
 
 export const SliderBox = styled.div`
   flex-direction: column;
-  padding: 0.6125em 0;
+  flex: 1;
+  ${media.mobile`
+    flex: initial;
+    padding: 0.6125em 0;
+  `}
   width: 100%;
 `;
 
@@ -132,8 +177,18 @@ export const ResultTitleBox = styled.div`
 `;
 
 export const ResultTitleSection = styled.div`
-  flex-direction: column;
+  flex-direction: row;
+  ${media.mobile`
+    flex-direction: column;
+  `}
   align-items: flex-end;
+
+  p:first-of-type {
+    margin-right: 0.3125em;
+    ${media.mobile`
+    margin-right: 0;
+  `}
+  }
 `;
 
 export const ResultFilterBox = styled.div`
