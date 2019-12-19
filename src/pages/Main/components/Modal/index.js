@@ -24,6 +24,9 @@ import {
   ResultTitleBox,
   ResultTitleSection,
   ResultFilterBox,
+  ButtonsSection,
+  CancelButton,
+  AddButton,
 } from './styles';
 
 export default function Modal() {
@@ -111,6 +114,10 @@ export default function Modal() {
             <CourseListItem item={item} />
           ))}
         </li>
+        <ButtonsSection>
+          <CancelButton>Cancelar</CancelButton>
+          <AddButton selected>Adicionar bolsa(s)</AddButton>
+        </ButtonsSection>
       </Content>
     </Container>
   );

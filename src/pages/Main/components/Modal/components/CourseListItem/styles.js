@@ -4,8 +4,8 @@ import colors from '../../../../../../styles/colors';
 import media from '../../../../../../styles/media';
 
 export const Container = styled.div`
-  border-top: 0.0625em solid ${colors.bold};
-  border-bottom: 0.0625em solid ${colors.bold};
+  border-top: 0.0625em solid ${colors.regular};
+  border-bottom: 0.0625em solid ${colors.regular};
   flex-direction: row;
   padding: 1.5em 0;
 `;
@@ -37,7 +37,7 @@ export const LogoSection = styled.div`
 `;
 
 export const Logo = styled.img`
-  height: 2em;
+  width: 80%;
 `;
 
 export const CourseSection = styled.div`
@@ -58,7 +58,7 @@ export const InfosSection = styled.div`
 
 export const LogoBox = styled.div`
   flex: 1;
-  width: 10em;
+  width: 8em;
   justify-content: center;
   align-items: center;
 `;

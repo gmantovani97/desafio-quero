@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Icon from '@mdi/react';
 import { mdiChevronLeft, mdiPlusCircleOutline } from '@mdi/js';
 
@@ -22,9 +22,18 @@ import {
 } from './styles';
 
 export default function Main() {
+  const [modal, setModal] = useState(true);
+
+  useEffect(() => (document.body.style.overflow = 'hidden'), []);
+
+  function handleOpenModal() {
+    document.body.style.overflow = 'hidden';
+    setModal(true);
+  }
+
   return (
     <Container>
-      <Modal />
+      {modal && <Modal />}
       <MainTop>
         <PageSection>
           <Icon size={1} path={mdiChevronLeft} color={colors.secondaryBlue} />
@@ -62,7 +71,7 @@ export default function Main() {
           <Button>1° semestre de 2020</Button>
         </ButtonsSection>
         <ContentSection>
-          <ScholarshipBox>
+          <ScholarshipBox onClick={handleOpenModal}>
             <Icon path={mdiPlusCircleOutline} color={colors.primaryBlue} />
             <Text textAlign="center" fontSize={2} bold>
               Adicionar bolsa

@@ -28,6 +28,7 @@ export const Content = styled.div`
   li {
     overflow-y: auto;
     list-style: none;
+    padding: 1.25em 0;
   }
 `;
 
@@ -138,5 +139,47 @@ export const ResultTitleSection = styled.div`
 export const ResultFilterBox = styled.div`
   svg {
     width: 1em;
+  }
+`;
+
+export const ButtonsSection = styled.div`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.6125em;
+`;
+
+export const CancelButton = styled.button`
+  flex: 1;
+  border: 0.0625em solid ${colors.secondaryBlue};
+  font-size: 1em;
+  font-weight: bold;
+  padding: 1em 1.25em;
+  margin: 0 0.5em 0 0;
+  border-radius: 0.25em;
+  background: ${colors.grey};
+  color: ${colors.secondaryBlue};
+
+  &:hover {
+    background: ${colors.regular};
+  }
+`;
+
+export const AddButton = styled.button`
+  flex: 2;
+  border: 0.0625em solid
+    ${props => (props.selected ? colors.secondaryYellow : colors.bold)};
+  font-size: 1em;
+  font-weight: bold;
+  padding: 1em 1.25em;
+  margin: 0 0 0 0.5em;
+  border-radius: 0.25em;
+  background: ${props =>
+    props.selected ? colors.primaryYellow : colors.regular};
+  color: ${props => (props.selected ? colors.black : colors.bold)};
+
+  &:hover {
+    background: ${props =>
+      props.selected ? colors.secondaryYellow : colors.bold};
   }
 `;
