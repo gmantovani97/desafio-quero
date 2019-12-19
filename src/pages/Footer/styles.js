@@ -121,3 +121,11 @@ export const BoxInfoSection = styled.div`
     `}
   }
 `;
+
+export const FooterBottom = styled.div`
+  flex: 1;
+  background: ${colors.primaryBlue};
+  justify-content: center;
+  align-items: center;
+  padding: 3em;
+`;

@@ -10,7 +10,13 @@ import {
 import Text from '../../elements/Text';
 import colors from '../../styles/colors';
 
-import { Container, FooterTop, BoxInfo, BoxInfoSection } from './styles';
+import {
+  Container,
+  FooterTop,
+  BoxInfo,
+  BoxInfoSection,
+  FooterBottom,
+} from './styles';
 
 export default function Footer() {
   return (
@@ -61,6 +67,11 @@ export default function Footer() {
           </BoxInfoSection>
         </BoxInfo>
       </FooterTop>
+      <FooterBottom>
+        <Text fontSize={1} color={colors.white} bold>
+          Feito com ♥︎ pela Quero Educação
+        </Text>
+      </FooterBottom>
     </Container>
   );
 }

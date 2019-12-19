@@ -1,8 +1,7 @@
 import { css } from 'styled-components';
 
 const sizes = {
-  mobile: 500,
-  tablet: 900,
+  mobile: 900,
 };
 
 const media = Object.keys(sizes).reduce((acc, label) => {
