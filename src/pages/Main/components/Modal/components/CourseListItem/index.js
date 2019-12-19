@@ -12,7 +12,7 @@ import {
   Logo,
   CourseSection,
   PriceSection,
-  PriceText,
+  LogoBox,
   InfosSection,
 } from './styles';
 
@@ -23,7 +23,9 @@ export default function CourseListItem({ item }) {
         <CheckBox>
           <Icon path={mdiCheckBold} color={colors.grey} />
         </CheckBox>
-        <Logo src={item.university.logo_url} />
+        <LogoBox>
+          <Logo src={item.university.logo_url} />
+        </LogoBox>
       </LogoSection>
       <InfosSection>
         <CourseSection>

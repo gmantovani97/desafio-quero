@@ -32,8 +32,8 @@ export const CheckBox = styled.div`
 `;
 
 export const LogoSection = styled.div`
-  align-items: center;
   margin-right: 1.25em;
+  align-items: center;
 `;
 
 export const Logo = styled.img`
@@ -54,4 +54,11 @@ export const PriceSection = styled.div`
 
 export const InfosSection = styled.div`
   flex-direction: column;
+`;
+
+export const LogoBox = styled.div`
+  flex: 1;
+  width: 10em;
+  justify-content: center;
+  align-items: center;
 `;
