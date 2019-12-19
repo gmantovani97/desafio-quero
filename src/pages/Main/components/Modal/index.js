@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Icon from '@mdi/react';
 import { mdiCheckBold, mdiChevronDown } from '@mdi/js';
 
 import Text from '../../../../elements/Text';
 import colors from '../../../../styles/colors';
+import { testApi } from '../../../../services/testApi';
 
+import CourseListItem from './components/CourseListItem';
 import {
   Container,
   Content,
@@ -25,6 +27,12 @@ import {
 } from './styles';
 
 export default function Modal() {
+  const [courses, setCourses] = useState([]);
+
+  useEffect(() => {
+    testApi.get('redealumni/scholarships').then(({ data }) => setCourses(data));
+  }, []);
+
   return (
     <Container>
       <Content>
@@ -98,6 +106,11 @@ export default function Modal() {
             </ResultFilterBox>
           </ResultTitleSection>
         </ResultTitleBox>
+        <li>
+          {courses.map(item => (
+            <CourseListItem item={item} />
+          ))}
+        </li>
       </Content>
     </Container>
   );

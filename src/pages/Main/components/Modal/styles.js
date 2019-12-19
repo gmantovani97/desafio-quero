@@ -14,14 +14,21 @@ export const Container = styled.div`
   background: ${colors.darkTransparent};
   justify-content: center;
   align-items: center;
+  /* overflow-y: auto; */
 `;
 
 export const Content = styled.div`
   background: ${colors.grey};
   padding: 1.25em;
   min-width: 100vw;
+  max-height: 80vh;
   flex-direction: column;
   flex: 1;
+
+  li {
+    overflow-y: auto;
+    list-style: none;
+  }
 `;
 
 export const TitleBox = styled.div`

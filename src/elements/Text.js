@@ -13,7 +13,7 @@ export default styled.p.attrs(
   }) => ({
     fontSize: fontSize || 1.4,
     textAlign: textAlign || 'left',
-    padding: padding || '0',
+    paddingLeft: padding || '0',
     marginBottom: marginBottom || 0,
     color: color || colors.black,
     bold: bold || false,
@@ -25,7 +25,7 @@ export default styled.p.attrs(
   text-align: ${props => props.textAlign};
   color: ${props => props.color};
   font-weight: ${props => (props.bold ? 700 : 400)};
-  padding: ${props => props.padding};
+  padding-left: ${props => props.padding}em;
   margin-bottom: ${props => props.marginBottom}em;
   text-transform: ${props => props.textTransform};
 `;
