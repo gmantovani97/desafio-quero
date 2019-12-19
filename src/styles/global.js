@@ -11,7 +11,7 @@ export default createGlobalStyle`
   }
 
   html, body, #root {
-    min-height: 100%;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
   }
@@ -25,6 +25,10 @@ export default createGlobalStyle`
   button {
     font-family: Montserrat;
     cursor: pointer;
+  }
+
+  select {
+    font-family: Montserrat;
   }
 
   div {

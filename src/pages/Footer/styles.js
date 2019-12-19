@@ -23,7 +23,7 @@ export const BoxInfo = styled.div`
     ${media.mobile`
       flex-direction: row;
       flex: initial;
-      width: 100%;
+      width: 100vw;
       border-bottom: 0.25em solid ${colors.primaryBlue};
     `}
     svg {
@@ -49,7 +49,7 @@ export const BoxInfo = styled.div`
         &::after {
           margin-top: 0.3125em;
           font-weight: bold;
-          color: ${colors.white};
+          color: ${colors.grey};
           content: 'Chat';
         }
       }
@@ -69,7 +69,7 @@ export const BoxInfo = styled.div`
         &::after {
           margin-top: 0.3125em;
           font-weight: bold;
-          color: ${colors.white};
+          color: ${colors.grey};
           content: 'E-mail';
         }
       }
@@ -87,7 +87,7 @@ export const BoxInfo = styled.div`
         &::after {
           margin-top: 0.3125em;
           font-weight: bold;
-          color: ${colors.white};
+          color: ${colors.grey};
           content: 'Ajuda';
         }
       }

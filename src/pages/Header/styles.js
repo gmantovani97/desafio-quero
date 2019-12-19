@@ -135,7 +135,7 @@ export const Button = styled.button`
           background: none;
         `};
   border: none;
-  color: ${colors.white};
+  color: ${colors.grey};
   font-size: 0.925em;
   font-weight: 700;
   padding: 0.325em 2em;

@@ -70,10 +70,10 @@ export default function Header() {
         <Button>Pré-matriculas</Button>
         <Button selected>Bolsas favoritas</Button>
         <MenuBox>
-          <Text fontSize={1} bold color={colors.white}>
+          <Text fontSize={1} bold color={colors.grey}>
             Menu
           </Text>
-          <Icon path={mdiChevronDown} color={colors.white} title="Conta" />
+          <Icon path={mdiChevronDown} color={colors.grey} title="Conta" />
         </MenuBox>
       </HeaderBottom>
     </Container>

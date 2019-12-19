@@ -5,6 +5,8 @@ import { mdiChevronLeft, mdiPlusCircleOutline } from '@mdi/js';
 import Text from '../../elements/Text';
 import colors from '../../styles/colors';
 
+import Modal from './components/Modal';
+
 import {
   Container,
   MainTop,
@@ -22,6 +24,7 @@ import {
 export default function Main() {
   return (
     <Container>
+      <Modal />
       <MainTop>
         <PageSection>
           <Icon size={1} path={mdiChevronLeft} color={colors.secondaryBlue} />

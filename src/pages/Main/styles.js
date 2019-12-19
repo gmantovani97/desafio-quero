@@ -71,9 +71,8 @@ export const Button = styled.button`
   border: 0.0625em solid ${colors.secondaryBlue};
   padding: 0.3125em 1.25em;
   font-weight: 700;
-  background: ${props =>
-    props.selected ? colors.secondaryBlue : colors.white};
-  color: ${props => (props.selected ? colors.white : colors.secondaryBlue)};
+  background: ${props => (props.selected ? colors.secondaryBlue : colors.grey)};
+  color: ${props => (props.selected ? colors.grey : colors.secondaryBlue)};
   ${media.mobile`
     font-size: 1.25em;
     padding: 0.75em;
@@ -106,7 +105,7 @@ export const ScholarshipBox = styled.button`
     `}
     width: 5em;
   }
-  background: ${colors.white};
+  background-color: ${colors.grey};
   max-width: 25em;
   height: 40em;
   ${media.mobile`
