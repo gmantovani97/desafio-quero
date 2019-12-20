@@ -100,6 +100,34 @@ export default function Modal() {
     }
   }
 
+  function applyFilter(item) {
+    if (filters.city.length) {
+      if (filters.city !== item.campus.city) {
+        return;
+      }
+    }
+    if (filters.course.length) {
+      if (filters.course !== item.course.name) {
+        return;
+      }
+    }
+    if (filters.price < item.price_with_discount) {
+      return;
+    }
+    if (filters.kind.presential && !filters.kind.distance) {
+      if (item.course.kind !== 'Presencial') {
+        return;
+      }
+    }
+    if (!filters.kind.presential && filters.kind.distance) {
+      if (item.course.kind !== 'EaD') {
+        return;
+      }
+    }
+    if (!filters.kind.presential && !filters.kind.distance) return;
+    return <CourseListItem item={item} />;
+  }
+
   console.log(price);
 
   return (
@@ -200,11 +228,7 @@ export default function Modal() {
             </ResultFilterBox>
           </ResultTitleSection>
         </ResultTitleBox>
-        <li>
-          {list.map(item => {
-            return <CourseListItem item={item} filters={filters} />;
-          })}
-        </li>
+        <li>{list.map(applyFilter)}</li>
         <ButtonsSection>
           <CancelButton>Cancelar</CancelButton>
           <AddButton>Adicionar bolsa(s)</AddButton>
