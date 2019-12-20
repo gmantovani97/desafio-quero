@@ -53,7 +53,13 @@ export const PriceSection = styled.div`
 `;
 
 export const InfosSection = styled.div`
-  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+  ${media.mobile`
+    justify-content: flex-start;
+    flex-direction: column;
+  `}
 `;
 
 export const LogoBox = styled.div`
