@@ -33,4 +33,11 @@ module.exports = {
     ],
     'import/prefer-default-export': 'off'
   },
+  settings: {
+    'import/resolver': {
+      alias: {
+        map: [["@", "./src"]]
+      }
+    }
+  }
 };
