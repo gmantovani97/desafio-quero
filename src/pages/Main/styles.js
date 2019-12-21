@@ -96,6 +96,7 @@ export const ContentSection = styled.div`
   ${media.mobile`
     flex-direction: column;
   `}
+  padding: 0 0.625em;
   overflow-x: scroll;
   li {
     list-style: none;

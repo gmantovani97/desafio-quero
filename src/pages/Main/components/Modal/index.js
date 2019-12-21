@@ -181,10 +181,8 @@ export default function Modal({ closeModal }) {
     closeModal();
   }
 
-  console.log(list.sort(applySort));
-
   return (
-    <Container>
+    <Container onClick={closeModal}>
       <Content>
         <TitleBox>
           <Text bold>Adicionar bolsa</Text>
