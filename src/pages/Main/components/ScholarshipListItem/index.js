@@ -33,6 +33,7 @@ export default function ScholarshipListItem({
           bold
           color={colors.secondaryBlue}
           marginBottom={0.625}
+          textAlign="center"
         >
           {item.course.name}
         </Text>

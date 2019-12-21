@@ -31,6 +31,11 @@ export default function Main() {
     setScholarships(list);
   }, []);
 
+  useEffect(() => {
+    const list = JSON.parse(localStorage.getItem('@scholarship'));
+    setScholarships(list);
+  }, [modal]);
+
   function handleOpenModal() {
     document.body.style.overflow = 'hidden';
     setModal(true);
