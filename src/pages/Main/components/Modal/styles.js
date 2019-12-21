@@ -12,7 +12,6 @@ export const Container = styled.div`
   background: ${colors.darkTransparent};
   justify-content: center;
   align-items: center;
-  /* overflow-y: auto; */
 `;
 
 export const Content = styled.div`
@@ -25,10 +24,12 @@ export const Content = styled.div`
   max-height: 80vh;
   flex-direction: column;
   flex: 1;
+  overflow-y: scroll;
 
-  ul {
-    overflow-y: auto;
-    list-style: none;
+  .list {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
     padding: 1.25em 0;
   }
 `;
@@ -179,6 +180,7 @@ export const ResultTitleSection = styled.div`
   ${media.mobile`
     flex-direction: column;
   `}
+  justify-content: center;
   align-items: flex-end;
 
   p:first-of-type {
@@ -190,6 +192,8 @@ export const ResultTitleSection = styled.div`
 `;
 
 export const ResultFilterBox = styled.div`
+  justify-content: center;
+  align-items: center;
   svg {
     width: 1em;
   }

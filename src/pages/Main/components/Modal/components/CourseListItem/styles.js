@@ -38,6 +38,7 @@ export const LogoSection = styled.div`
 
 export const Logo = styled.img`
   width: 80%;
+  height: auto;
 `;
 
 export const CourseSection = styled.div`
@@ -57,7 +58,8 @@ export const InfosSection = styled.div`
   justify-content: space-between;
   align-items: center;
   ${media.mobile`
-    justify-content: flex-start;
+    justify-content: center;
+    align-items: flex-start;
     flex-direction: column;
   `}
 `;

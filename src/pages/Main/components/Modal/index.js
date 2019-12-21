@@ -281,10 +281,13 @@ export default function Modal({ closeModal }) {
             </ResultFilterBox>
           </ResultTitleSection>
         </ResultTitleBox>
-        <ul>{list.sort(applySort).map(applyFilter)}</ul>
+        <div className="list">{list.sort(applySort).map(applyFilter)}</div>
         <ButtonsSection>
           <CancelButton onClick={closeModal}>Cancelar</CancelButton>
-          <AddButton selected={canAdd} onClick={handleSaveScholarships}>
+          <AddButton
+            selected={canAdd}
+            onClick={canAdd && handleSaveScholarships}
+          >
             Adicionar bolsa(s)
           </AddButton>
         </ButtonsSection>
