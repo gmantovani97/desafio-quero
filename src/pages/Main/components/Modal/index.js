@@ -148,12 +148,20 @@ export default function Modal({ closeModal }) {
     );
   }
 
+  function applySort(a, b) {
+    if (a.university.name.toUpperCase() > b.university.name.toUpperCase()) {
+      return 1;
+    }
+    return -1;
+  }
+
   function handleSaveScholarships() {
     const scholarships = JSON.parse(localStorage.getItem('@scholarship'));
     const filteredList = list
       .filter(scholarship => {
         const { selected, ...obj } = scholarship;
         if (selected) {
+          if (!scholarships) return obj;
           if (
             !scholarships.find(
               item => JSON.stringify(item) === JSON.stringify(obj)
@@ -168,10 +176,12 @@ export default function Modal({ closeModal }) {
       .map(({ selected, ...obj }) => obj);
     localStorage.setItem(
       '@scholarship',
-      JSON.stringify([...scholarships, ...filteredList])
+      JSON.stringify([...(scholarships || []), ...filteredList])
     );
     closeModal();
   }
+
+  console.log(list.sort(applySort));
 
   return (
     <Container>
@@ -271,7 +281,7 @@ export default function Modal({ closeModal }) {
             </ResultFilterBox>
           </ResultTitleSection>
         </ResultTitleBox>
-        <ul>{list.map(applyFilter)}</ul>
+        <ul>{list.sort(applySort).map(applyFilter)}</ul>
         <ButtonsSection>
           <CancelButton onClick={closeModal}>Cancelar</CancelButton>
           <AddButton selected={canAdd} onClick={handleSaveScholarships}>

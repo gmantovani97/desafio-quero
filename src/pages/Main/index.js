@@ -24,6 +24,10 @@ import {
 
 export default function Main() {
   const [modal, setModal] = useState(false);
+  const [filters, setFilter] = useState({
+    second2019: true,
+    first2020: true,
+  });
   const [scholarships, setScholarships] = useState([]);
 
   useEffect(() => {
@@ -44,6 +48,50 @@ export default function Main() {
   function handleCloseModal() {
     document.body.style.overflow = 'scroll';
     setModal(false);
+  }
+
+  function handleChangeFilter(semester) {
+    if (semester === '2019.2') {
+      setFilter({
+        second2019: true,
+        first2020: false,
+      });
+    } else if (semester === '2020.1') {
+      setFilter({
+        second2019: false,
+        first2020: true,
+      });
+    } else {
+      setFilter({
+        second2019: true,
+        first2020: true,
+      });
+    }
+  }
+
+  function applyFilter(item) {
+    if (filters.first2020 && !filters.second2019) {
+      if (item.enrollment_semester !== '2020.1') {
+        return;
+      }
+    }
+    if (!filters.first2020 && filters.second2019) {
+      if (item.enrollment_semester !== '2019.2') {
+        return;
+      }
+    }
+    return (
+      <li key={Math.random()}>
+        <ScholarshipListItem
+          item={item}
+          modalOpened={modal}
+          handleDeleteScholarship={scholarship =>
+            handleDeleteScholarship(scholarship)
+          }
+        />
+      </li>
+    );
+    // if (!filters.kind.presential && !filters.kind.distance) return;
   }
 
   function handleDeleteScholarship(item) {
@@ -115,9 +163,24 @@ export default function Main() {
           </Text>
         </TitleSection>
         <ButtonsSection>
-          <Button selected>Todos os semestres</Button>
-          <Button>2° semestre de 2019</Button>
-          <Button>1° semestre de 2020</Button>
+          <Button
+            onClick={() => handleChangeFilter('all')}
+            selected={filters.first2020 && filters.second2019}
+          >
+            Todos os semestres
+          </Button>
+          <Button
+            onClick={() => handleChangeFilter('2019.2')}
+            selected={!filters.first2020 && filters.second2019}
+          >
+            2° semestre de 2019
+          </Button>
+          <Button
+            onClick={() => handleChangeFilter('2020.1')}
+            selected={filters.first2020 && !filters.second2019}
+          >
+            1° semestre de 2020
+          </Button>
         </ButtonsSection>
         <ContentSection>
           <ScholarshipBox onClick={handleOpenModal}>
@@ -129,18 +192,7 @@ export default function Main() {
               Clique para adicionar bolsas de cursos do seu interesse
             </Text>
           </ScholarshipBox>
-          {scholarships &&
-            scholarships.map(item => (
-              <li key={Math.random()}>
-                <ScholarshipListItem
-                  item={item}
-                  modalOpened={modal}
-                  handleDeleteScholarship={scholarship =>
-                    handleDeleteScholarship(scholarship)
-                  }
-                />
-              </li>
-            ))}
+          {scholarships && scholarships.map(applyFilter)}
         </ContentSection>
       </MainBottom>
     </Container>

@@ -98,7 +98,11 @@ export default function ScholarshipListItem({
         <DeleteButton onClick={() => handleDeleteScholarship(item)}>
           Excluir
         </DeleteButton>
-        <CheckOfferButton enabled={item.enabled}>Ver oferta</CheckOfferButton>
+        <CheckOfferButton enabled={item.enabled}>
+          <Text fontSize={1} bold>
+            Ver oferta
+          </Text>
+        </CheckOfferButton>
       </ButtonBox>
     </ScholarshipBox>
   );
