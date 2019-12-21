@@ -79,6 +79,11 @@ export const ContactBoxText = styled.div`
 export const Image = styled.img`
   ${media.mobile`
     height: 6.25em;
+    width: auto;
+  `}
+  ${media.mobileM`
+    height: 5em;
+    width: auto;
   `}
   height: 4.375em;
 `;
