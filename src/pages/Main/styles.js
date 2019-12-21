@@ -96,22 +96,35 @@ export const ContentSection = styled.div`
   ${media.mobile`
     flex-direction: column;
   `}
+  overflow-x: scroll;
+  li {
+    list-style: none;
+  }
 `;
 
-export const ScholarshipBox = styled.button`
+export const ScholarshipBox = styled.div`
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
   svg {
     ${media.mobile`
       width: 8em;
     `}
     width: 5em;
+    margin-bottom: 2.5em;
   }
   background-color: ${colors.grey};
-  max-width: 25em;
-  height: 40em;
+  min-width: 15em;
+  width: 15em;
+  height: 25em;
+  margin: 0 2.5em 0 0;
   ${media.mobile`
+    margin: 0 0 2.5em 0;
     padding: 5em;
-    max-width: none;
     height: auto;
+    width: auto;
+    min-width: auto;
   `}
   padding: 6.25em 2.25em;
   box-shadow: 0 0.125em 1em ${colors.regular};

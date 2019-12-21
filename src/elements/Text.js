@@ -10,11 +10,13 @@ export default styled.p.attrs(
     bold,
     textTransform,
     marginBottom,
+    marginRight,
   }) => ({
     fontSize: fontSize || 1.4,
     textAlign: textAlign || 'left',
     paddingLeft: padding || '0',
     marginBottom: marginBottom || 0,
+    marginRight: marginRight || 0,
     color: color || colors.black,
     bold: bold || false,
     textTransform: textTransform || 'none',
@@ -27,5 +29,6 @@ export default styled.p.attrs(
   font-weight: ${props => (props.bold ? 700 : 400)};
   padding-left: ${props => props.padding}em;
   margin-bottom: ${props => props.marginBottom}em;
+  margin-right: ${props => props.marginRight}em;
   text-transform: ${props => props.textTransform};
 `;

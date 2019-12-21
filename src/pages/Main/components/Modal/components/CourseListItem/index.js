@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Icon from '@mdi/react';
 import { mdiCheckBold } from '@mdi/js';
+import PropTypes from 'prop-types';
 
 import Text from '../../../../../../elements/Text';
 import colors from '../../../../../../styles/colors';
@@ -16,11 +17,22 @@ import {
   InfosSection,
 } from './styles';
 
-export default function CourseListItem({ item }) {
+export default function CourseListItem({ item, selectScholarship }) {
+  const [selected, setSelected] = useState(false);
+
+  function handleAddScholarship() {
+    setSelected(!selected);
+    selectScholarship(item);
+  }
+
+  useEffect(() => {
+    if (item.selected) setSelected(true);
+  }, []);
+
   return (
     <Container>
       <LogoSection>
-        <CheckBox>
+        <CheckBox selected={selected} onClick={handleAddScholarship}>
           <Icon path={mdiCheckBold} color={colors.grey} />
         </CheckBox>
         <LogoBox>
@@ -54,3 +66,8 @@ export default function CourseListItem({ item }) {
     </Container>
   );
 }
+
+CourseListItem.propTypes = {
+  item: PropTypes.shape.isRequired,
+  selectScholarship: PropTypes.func.isRequired,
+};

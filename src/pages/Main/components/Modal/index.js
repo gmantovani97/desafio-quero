@@ -31,11 +31,11 @@ import {
   AddButton,
 } from './styles';
 
-export default function Modal() {
+export default function Modal({ closeModal }) {
   const [list, setList] = useState([]);
   const [cities, setCities] = useState([]);
   const [courses, setCourses] = useState([]);
-  const [kind, setKind] = useState(['Presencial', 'EaD']);
+  const [canAdd, setCanAdd] = useState(false);
   const [price, setPrice] = useState(['0']);
   const [filters, setFilters] = useState({
     city: '',
@@ -49,7 +49,7 @@ export default function Modal() {
 
   useEffect(() => {
     testApi.get('redealumni/scholarships').then(async ({ data }) => {
-      setList(data);
+      setList(data.map(item => ({ ...item, selected: false })));
       const citiesList = [];
       data.map(item => {
         if (citiesList.indexOf(item.campus.city) === -1) {
@@ -64,7 +64,6 @@ export default function Modal() {
         }
       });
       setCourses(coursesList);
-      console.log(data);
       setPrice([...data.map(item => item.price_with_discount)]);
     });
   }, []);
@@ -77,11 +76,12 @@ export default function Modal() {
   }, [price]);
 
   useEffect(() => {
-    setFilters({
-      ...filters,
-      price: Math.max(...price),
-    });
-  }, [price]);
+    if (list.find(item => item.selected)) {
+      setCanAdd(true);
+    } else {
+      setCanAdd(false);
+    }
+  }, [list]);
 
   function handleChangeFilter(value, filter, isKind) {
     if (!isKind) {
@@ -98,6 +98,20 @@ export default function Modal() {
         },
       });
     }
+  }
+
+  function handleSelectScholarship(scholarship) {
+    setList(
+      list.map(item => {
+        if (item === scholarship) {
+          return {
+            ...item,
+            selected: !item.selected,
+          };
+        }
+        return item;
+      })
+    );
   }
 
   function applyFilter(item) {
@@ -125,10 +139,38 @@ export default function Modal() {
       }
     }
     if (!filters.kind.presential && !filters.kind.distance) return;
-    return <CourseListItem item={item} />;
+    return (
+      <CourseListItem
+        key={Math.random()}
+        item={item}
+        selectScholarship={scholarship => handleSelectScholarship(scholarship)}
+      />
+    );
   }
 
-  console.log(price);
+  function handleSaveScholarships() {
+    const scholarships = JSON.parse(localStorage.getItem('@scholarship'));
+    const filteredList = list
+      .filter(scholarship => {
+        const { selected, ...obj } = scholarship;
+        if (selected) {
+          if (
+            !scholarships.find(
+              item => JSON.stringify(item) === JSON.stringify(obj)
+            )
+          ) {
+            return obj;
+          }
+          return false;
+        }
+        return false;
+      })
+      .map(({ selected, ...obj }) => obj);
+    localStorage.setItem(
+      '@scholarship',
+      JSON.stringify([...scholarships, ...filteredList])
+    );
+  }
 
   return (
     <Container>
@@ -201,7 +243,7 @@ export default function Modal() {
                 ATÉ QUANTO PODE PAGAR?
               </Text>
               <Text fontSize={0.875} marginBottom={1.25}>
-                R$ {filters.price}
+                R$ {parseFloat(filters.price).toFixed(2)}
               </Text>
               <Slider
                 min={Math.min(...price)}
@@ -228,10 +270,12 @@ export default function Modal() {
             </ResultFilterBox>
           </ResultTitleSection>
         </ResultTitleBox>
-        <li>{list.map(applyFilter)}</li>
+        <ul>{list.map(applyFilter)}</ul>
         <ButtonsSection>
-          <CancelButton>Cancelar</CancelButton>
-          <AddButton>Adicionar bolsa(s)</AddButton>
+          <CancelButton onClick={closeModal}>Cancelar</CancelButton>
+          <AddButton selected={canAdd} onClick={handleSaveScholarships}>
+            Adicionar bolsa(s)
+          </AddButton>
         </ButtonsSection>
       </Content>
     </Container>

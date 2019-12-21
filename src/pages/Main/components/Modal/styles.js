@@ -1,6 +1,4 @@
 import styled, { css } from 'styled-components';
-import Icon from '@mdi/react';
-import { mdiChevronDown } from '@mdi/js';
 
 import colors from '../../../../styles/colors';
 import media from '../../../../styles/media';
@@ -28,7 +26,7 @@ export const Content = styled.div`
   flex-direction: column;
   flex: 1;
 
-  li {
+  ul {
     overflow-y: auto;
     list-style: none;
     padding: 1.25em 0;
@@ -234,7 +232,11 @@ export const AddButton = styled.button`
   color: ${props => (props.selected ? colors.black : colors.bold)};
 
   &:hover {
-    background: ${props =>
-      props.selected ? colors.secondaryYellow : colors.bold};
+    ${props =>
+      !props.selected &&
+      css`
+        cursor: not-allowed;
+      `};
+    background: ${props => props.selected && colors.secondaryYellow};
   }
 `;

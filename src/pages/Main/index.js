@@ -6,6 +6,7 @@ import Text from '../../elements/Text';
 import colors from '../../styles/colors';
 
 import Modal from './components/Modal';
+import ScholarshipListItem from './components/ScholarshipListItem';
 
 import {
   Container,
@@ -22,18 +23,61 @@ import {
 } from './styles';
 
 export default function Main() {
-  const [modal, setModal] = useState(true);
+  const [modal, setModal] = useState(false);
+  const [scholarships, setScholarships] = useState([]);
 
-  useEffect(() => (document.body.style.overflow = 'hidden'), []);
+  useEffect(() => {
+    const list = JSON.parse(localStorage.getItem('@scholarship'));
+    setScholarships(list);
+  }, []);
 
   function handleOpenModal() {
     document.body.style.overflow = 'hidden';
     setModal(true);
   }
 
+  function handleCloseModal() {
+    document.body.style.overflow = 'scroll';
+    setModal(false);
+  }
+
+  function handleDeleteScholarship(item) {
+    const list = scholarships.filter(
+      scholarship => JSON.stringify(scholarship) !== JSON.stringify(item)
+    );
+    setScholarships(list);
+    localStorage.setItem('@scholarship', JSON.stringify(list));
+  }
+
+  function handleSaveScholarships(list) {
+    const scholarshipsList = JSON.parse(localStorage.getItem('@scholarship'));
+    list.forEach(scholarship => {
+      const { selected, ...obj } = scholarship;
+      if (!scholarshipsList && selected) {
+        localStorage.setItem('@scholarship', JSON.stringify([obj]));
+      } else if (scholarshipsList && selected) {
+        if (
+          !scholarshipsList.find(
+            item => JSON.stringify(item) === JSON.stringify(obj)
+          )
+        ) {
+          localStorage.setItem(
+            '@scholarship',
+            JSON.stringify([...scholarships, obj])
+          );
+        }
+      }
+    });
+  }
+
   return (
     <Container>
-      {modal && <Modal />}
+      {modal && (
+        <Modal
+          closeModal={handleCloseModal}
+          handleSaveScholarships={item => handleSaveScholarships(item)}
+        />
+      )}
       <MainTop>
         <PageSection>
           <Icon size={1} path={mdiChevronLeft} color={colors.secondaryBlue} />
@@ -73,13 +117,25 @@ export default function Main() {
         <ContentSection>
           <ScholarshipBox onClick={handleOpenModal}>
             <Icon path={mdiPlusCircleOutline} color={colors.primaryBlue} />
-            <Text textAlign="center" fontSize={2} bold>
-              Adicionar bolsa
+            <Text textAlign="center" fontSize={1.25} bold marginBottom={0.625}>
+              Adicionar curso
             </Text>
-            <Text textAlign="center">
+            <Text textAlign="center" fontSize={0.875}>
               Clique para adicionar bolsas de cursos do seu interesse
             </Text>
           </ScholarshipBox>
+          {scholarships &&
+            scholarships.map(item => (
+              <li key={Math.random()}>
+                <ScholarshipListItem
+                  item={item}
+                  modalOpened={modal}
+                  handleDeleteScholarship={scholarship =>
+                    handleDeleteScholarship(scholarship)
+                  }
+                />
+              </li>
+            ))}
         </ContentSection>
       </MainBottom>
     </Container>
